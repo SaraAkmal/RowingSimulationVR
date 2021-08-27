@@ -7,11 +7,13 @@ public class BatsManager : MonoBehaviour
     [SerializeField] private GameObject target;
     [SerializeField] private float rotationSpeed;
     private ParticleSystem batsParticleSystem;
+    private Vector3 orginalPosition;
     private bool rotateAroundBool;
 
     private void Start()
     {
         batsParticleSystem = bats.GetComponent<ParticleSystem>();
+        orginalPosition = bats.transform.position;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class BatsManager : MonoBehaviour
     {
         if (other.name.Equals("Boat"))
         {
-            bats.transform.DOMove(target.transform.position, 1);
+            bats.transform.DOMove(target.transform.position, 4);
             batsParticleSystem.Play();
             bats.GetComponent<AudioSource>().DOFade(1, 2);
             bats.GetComponent<AudioSource>().Play();
@@ -51,5 +53,6 @@ public class BatsManager : MonoBehaviour
     private void StopAudio()
     {
         bats.GetComponent<AudioSource>().Pause();
+        bats.transform.DOMove(orginalPosition, 3);
     }
 }

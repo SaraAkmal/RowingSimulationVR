@@ -48,36 +48,36 @@ public class PaddleLeftVR : Paddle
         if (Mathf.Abs(posDelta.x) > Mathf.Abs(posDelta.y))
         {
             // print("Entered X");
-            if (posDelta.x < 0)
+            if (posDelta.x < -0.0001f)
             {
-                // print("posDelta.x < 0");
+                print("posDelta.x < 0");
                 RotateYLeft();
-                if (nextState == ProcessState.Front)
-                    nextState = ProcessState.Down;
-            }
-
-            if (posDelta.x > 0)
-            {
-                // print("posDelta.x > 0");
-                RotateYRight();
                 if (nextState == ProcessState.Back)
                     nextState = ProcessState.up;
+            }
+
+            if (posDelta.x > 0.0001f)
+            {
+                print("posDelta.x > 0");
+                RotateYRight();
+                if (nextState == ProcessState.Front)
+                    nextState = ProcessState.Down;
             }
         }
         else
         {
             // print("Entered Y");
-            if (posDelta.y < 0)
+            if (posDelta.y < -0.0001f)
             {
-                // print("posDelta.y < 0");
+                print("posDelta.y < 0");
                 RotateZDown();
                 if (nextState == ProcessState.Down)
                     nextState = ProcessState.Back;
             }
 
-            if (posDelta.y > 0)
+            if (posDelta.y > 0.0001f)
             {
-                // print("posDelta.y > 0");
+                print("posDelta.y > 0");
                 RotateZUp();
                 if (nextState == ProcessState.up)
                 {
