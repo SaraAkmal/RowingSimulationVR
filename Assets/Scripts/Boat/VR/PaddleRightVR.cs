@@ -27,7 +27,7 @@ public class PaddleRightVR : Paddle
         {
             isRotating = false;
             RotateToOriginal();
-            stopBoatEvent?.Invoke();
+            //stopBoatEvent?.Invoke();
         }
         //updating the movement
 

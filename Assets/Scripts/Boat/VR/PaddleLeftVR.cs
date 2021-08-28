@@ -26,14 +26,14 @@ public class PaddleLeftVR : Paddle
         {
             isRotating = false;
             RotateToOriginal();
-            //stopBoatEvent?.Invoke();
+            stopBoatEvent?.Invoke();
         }
         //updating the movement
 
         else if (ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip))
         {
             // isRotating = true;
-            // moveBoatEvent?.Invoke();
+            //moveBoatEvent?.Invoke();
             StartRowing(deltaPos);
         }
 
@@ -48,7 +48,7 @@ public class PaddleLeftVR : Paddle
         if (Mathf.Abs(posDelta.x) > Mathf.Abs(posDelta.y))
         {
             // print("Entered X");
-            if (posDelta.x < -0.0001f)
+            if (posDelta.x < 0)
             {
                 print("posDelta.x < 0");
                 RotateYLeft();
@@ -56,7 +56,7 @@ public class PaddleLeftVR : Paddle
                     nextState = ProcessState.up;
             }
 
-            if (posDelta.x > 0.0001f)
+            if (posDelta.x > 0)
             {
                 print("posDelta.x > 0");
                 RotateYRight();
@@ -67,7 +67,7 @@ public class PaddleLeftVR : Paddle
         else
         {
             // print("Entered Y");
-            if (posDelta.y < -0.0001f)
+            if (posDelta.y < 0)
             {
                 print("posDelta.y < 0");
                 RotateZDown();
@@ -75,7 +75,7 @@ public class PaddleLeftVR : Paddle
                     nextState = ProcessState.Back;
             }
 
-            if (posDelta.y > 0.0001f)
+            if (posDelta.y > 0)
             {
                 print("posDelta.y > 0");
                 RotateZUp();
@@ -83,7 +83,8 @@ public class PaddleLeftVR : Paddle
                 {
                     nextState = ProcessState.Front;
                     print("Rotating");
-                    isRotating = true;
+                    moveBoatEvent?.Invoke();
+                    //isRotating = true;
                 }
             }
         }

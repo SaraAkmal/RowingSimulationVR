@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using HTC.UnityPlugin.Vive;
+
 
 public class BoatManager : MonoBehaviour
 {
@@ -37,10 +39,10 @@ public class BoatManager : MonoBehaviour
     private void LateUpdate()
     {
         //boatParent.transform.position += transform.forward * Time.deltaTime * speed;
-        // if (isMoving &&
-        //     ViveInput.GetPress(HandRole.RightHand,
-        //         ControllerButton.Grip))
-        //     boatParent.transform.position += transform.forward * Time.deltaTime * speed;
+        if (isMoving &&
+            ViveInput.GetPress(HandRole.LeftHand,
+                ControllerButton.Grip))
+            boatParent.transform.position += transform.forward * Time.deltaTime * speed;
     }
 
 
@@ -55,4 +57,5 @@ public class BoatManager : MonoBehaviour
         isMoving = false;
         print(isMoving);
     }
+    
 }
