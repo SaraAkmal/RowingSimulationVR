@@ -6,8 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: 199c82cad5679684480b592caa2e298c
+  - enabled: 1
     path: Assets/Scenes/LightHouse.unity
     guid: 6e57aa97b275a724d9a5b83d40f81a9f
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: dd67b882e8b91cb4cbec31ac088658a4,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2adabb17372ae0c4cbb0a493f63486c1,
       type: 2}

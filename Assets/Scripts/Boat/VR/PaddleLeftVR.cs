@@ -8,6 +8,9 @@ public class PaddleLeftVR : Paddle
     private Vector3 lastPostion = Vector3.zero;
     private ProcessState nextState;
     private bool resetMovement;
+    Vector3 deltaPos;
+    public float speed;
+    
 
     private void Start()
     {
@@ -21,8 +24,9 @@ public class PaddleLeftVR : Paddle
     private void Update()
     {
         //check if button is pressed get bool value from input source
-        var deltaPos = movementSource.localPosition - lastPostion;
-        if (deltaPos.Equals(new Vector3(0, 0, 0))) //or (!isPressed && deltaPos.equals(new Vector3(0, 0, 0)))
+        deltaPos = (movementSource.localPosition - lastPostion) / Time.deltaTime;
+        print("left" + deltaPos.magnitude);
+        if (deltaPos.magnitude < 0.3f) //or (!isPressed && deltaPos.equals(new Vector3(0, 0, 0)))
         {
             isRotating = false;
             RotateToOriginal();
@@ -39,54 +43,59 @@ public class PaddleLeftVR : Paddle
 
 
         // store our mousePosition so that we can check it again next frame.
-
         lastPostion = movementSource.localPosition;
     }
 
     protected void StartRowing(Vector3 posDelta)
     {
-        if (Mathf.Abs(posDelta.x) > Mathf.Abs(posDelta.y))
+        //print("Left:" + posDelta.magnitude);
+        if (posDelta.magnitude > speed)
         {
-            // print("Entered X");
-            if (posDelta.x < 0)
+            if (Mathf.Abs(posDelta.x) > Mathf.Abs(posDelta.y))
             {
-                print("posDelta.x < 0");
-                RotateYLeft();
-                if (nextState == ProcessState.Back)
-                    nextState = ProcessState.up;
-            }
-
-            if (posDelta.x > 0)
-            {
-                print("posDelta.x > 0");
-                RotateYRight();
-                if (nextState == ProcessState.Front)
-                    nextState = ProcessState.Down;
-            }
-        }
-        else
-        {
-            // print("Entered Y");
-            if (posDelta.y < 0)
-            {
-                print("posDelta.y < 0");
-                RotateZDown();
-                if (nextState == ProcessState.Down)
-                    nextState = ProcessState.Back;
-            }
-
-            if (posDelta.y > 0)
-            {
-                print("posDelta.y > 0");
-                RotateZUp();
-                if (nextState == ProcessState.up)
+                // print("Entered X");
+                if (posDelta.x < 0)
                 {
-                    nextState = ProcessState.Front;
-                    print("Rotating");
-                    moveBoatEvent?.Invoke();
-                    //isRotating = true;
+                   // print("posDelta.x < 0");
+                    RotateYRight();
+                    if (nextState == ProcessState.Back)
+                        nextState = ProcessState.up;
+                }
+
+                if (posDelta.x > 0)
+                {
+                    //print("posDelta.x > 0");                   
+                    RotateYLeft();
+                    if (nextState == ProcessState.Front)
+                        nextState = ProcessState.Down;
                 }
             }
+
+            else
+            {
+                // print("Entered Y");
+                if (posDelta.y < 0)
+                {
+                    print("posDelta.y < 0");
+                    RotateZDown();
+                    if (nextState == ProcessState.Down)
+                        nextState = ProcessState.Back;
+                }
+
+                if (posDelta.y > 0)
+                {
+                    //print("posDelta.y > 0");
+                    RotateZUp();
+                    if (nextState == ProcessState.up)
+                    {
+                        nextState = ProcessState.Front;
+                        print("Rotating");
+                        moveBoatEvent?.Invoke();
+                        isRotating = true;
+                    }
+                }
+            }
+      
         }
     }
 

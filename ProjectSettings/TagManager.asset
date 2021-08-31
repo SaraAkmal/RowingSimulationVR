@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - projectile
+  - Boat
+  - FxTemporaire
+  - MusicObject
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - Lighting
   - Ground
   - Postprocessing
-  - 
+  - BoatParent
   - 
   - 
   - 

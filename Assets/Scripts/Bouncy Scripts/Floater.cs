@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Floater : MonoBehaviour
 {
-    [SerializeField] public float zDirectionRotation = 0.06f;
-    [SerializeField] public float yDirectionPosition = 0.05f;
+    [SerializeField] public float xDirectionRotation;
+    [SerializeField] public float yDirectionPosition;
     [SerializeField] private float rotateSpeed = 0.5f;
     [SerializeField] private GameObject boatParent;
     private bool isBoatNotFloating;
@@ -24,13 +24,13 @@ public class Floater : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
+        xDirectionRotation = Random.Range(0.01f, 0.015f);
         rightPaddleRotating = transform.Find("PaddleRight").GetComponent<PaddleRightVR>().isRotating;
         leftPaddleRotating = transform.Find("PaddleLeft").GetComponent<PaddleLeftVR>().isRotating;
 
         if (ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip) && leftPaddleRotating &&
             !ViveInput.GetPress(HandRole.RightHand, ControllerButton.Grip))
         {
-            //DOTween.Pause("Float");
             RotateLeftBoat(); //positive rotate speed value
             isBoatNotFloating = true;
         }
@@ -38,16 +38,9 @@ public class Floater : MonoBehaviour
         else if (ViveInput.GetPress(HandRole.RightHand, ControllerButton.Grip) && rightPaddleRotating &&
                  !ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip))
         {
-            //DOTween.Pause("Float");
             RotateRightBoat(); //negative rotate speed value
             isBoatNotFloating = true; //flag for the whole boat rotating
         }
-        //
-        // else if (isBoatNotFloating) // starts floating once rotation stops
-        // {
-        //     isBoatNotFloating = false;
-        //     FloatLeft();
-        // }
     }
 
     private void RotateLeftBoat()
@@ -75,14 +68,14 @@ public class Floater : MonoBehaviour
 
     private void FloatLeft()
     {
-        var rot = new Quaternion(rotationX + zDirectionRotation, transform.localRotation.y, transform.localRotation.z,
+        var rot = new Quaternion(rotationX + xDirectionRotation, transform.localRotation.y, transform.localRotation.z,
             transform.localRotation.w);
         transform.DOLocalRotateQuaternion(rot, 2).OnComplete(FloatRight).SetEase(Ease.InOutSine).SetId("Float");
     }
 
     private void FloatRight()
     {
-        var rot = new Quaternion(rotationX - zDirectionRotation, transform.localRotation.y, transform.localRotation.z,
+        var rot = new Quaternion(rotationX - xDirectionRotation, transform.localRotation.y, transform.localRotation.z,
             transform.localRotation.w);
         transform.DOLocalRotateQuaternion(rot, 2).OnComplete(FloatLeft).SetEase(Ease.InOutSine).SetId("Float");
     }

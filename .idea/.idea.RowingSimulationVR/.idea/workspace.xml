@@ -14,9 +14,9 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/BatsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Boat/VR/PaddleRightVR.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Boat/BoatManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Boat/VR/PaddleLeftVR.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/IslandManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Boat/BoatManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xJrCNXlVRzqJs7b5LF6mScupFB" />
@@ -63,7 +63,8 @@
       <updated>1630083908052</updated>
       <workItem from="1630083936919" duration="1291000" />
       <workItem from="1630101271550" duration="3175000" />
-      <workItem from="1630161040330" duration="3279000" />
+      <workItem from="1630161040330" duration="3918000" />
+      <workItem from="1630168209415" duration="629000" />
     </task>
     <servers />
   </component>
