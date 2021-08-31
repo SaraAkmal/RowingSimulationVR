@@ -5,12 +5,12 @@ public class PaddleLeftVR : Paddle
 {
     public Transform movementSource;
     public bool isRotating;
+    public float speed;
+    private Vector3 deltaPos;
     private Vector3 lastPostion = Vector3.zero;
     private ProcessState nextState;
     private bool resetMovement;
-    Vector3 deltaPos;
-    public float speed;
-    
+
 
     private void Start()
     {
@@ -25,7 +25,6 @@ public class PaddleLeftVR : Paddle
     {
         //check if button is pressed get bool value from input source
         deltaPos = (movementSource.localPosition - lastPostion) / Time.deltaTime;
-        print("left" + deltaPos.magnitude);
         if (deltaPos.magnitude < 0.3f) //or (!isPressed && deltaPos.equals(new Vector3(0, 0, 0)))
         {
             isRotating = false;
@@ -56,7 +55,7 @@ public class PaddleLeftVR : Paddle
                 // print("Entered X");
                 if (posDelta.x < 0)
                 {
-                   // print("posDelta.x < 0");
+                    // print("posDelta.x < 0");
                     RotateYRight();
                     if (nextState == ProcessState.Back)
                         nextState = ProcessState.up;
@@ -89,13 +88,11 @@ public class PaddleLeftVR : Paddle
                     if (nextState == ProcessState.up)
                     {
                         nextState = ProcessState.Front;
-                        print("Rotating");
                         moveBoatEvent?.Invoke();
                         isRotating = true;
                     }
                 }
             }
-      
         }
     }
 

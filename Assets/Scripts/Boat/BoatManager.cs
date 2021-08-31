@@ -37,7 +37,7 @@ public class BoatManager : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
-        //boatParent.transform.position += transform.forward * Time.deltaTime * speed;
+        
         if (isMoving &&
             ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip) &&
             ViveInput.GetPress(HandRole.RightHand,

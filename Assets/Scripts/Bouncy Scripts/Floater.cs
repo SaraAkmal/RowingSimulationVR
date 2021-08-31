@@ -31,14 +31,14 @@ public class Floater : MonoBehaviour
         if (ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip) && leftPaddleRotating &&
             !ViveInput.GetPress(HandRole.RightHand, ControllerButton.Grip))
         {
-            RotateLeftBoat(); //positive rotate speed value
+            RotateRightBoat(); //positive rotate speed value
             isBoatNotFloating = true;
         }
 
         else if (ViveInput.GetPress(HandRole.RightHand, ControllerButton.Grip) && rightPaddleRotating &&
                  !ViveInput.GetPress(HandRole.LeftHand, ControllerButton.Grip))
         {
-            RotateRightBoat(); //negative rotate speed value
+            RotateLeftBoat(); //negative rotate speed value
             isBoatNotFloating = true; //flag for the whole boat rotating
         }
     }

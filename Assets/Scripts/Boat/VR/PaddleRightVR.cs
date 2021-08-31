@@ -6,11 +6,11 @@ public class PaddleRightVR : Paddle
     //public InputHelpers.Button inputButton; //button clicked before movement
     public Transform movementSource;
     public bool isRotating;
+    public float speed;
+    private Vector3 deltaPos;
     private Vector3 lastPostion = Vector3.zero;
 
     private ProcessState nextState;
-    Vector3 deltaPos;
-    public float speed;
 
 
     private void Start()
@@ -24,8 +24,7 @@ public class PaddleRightVR : Paddle
     // Update is called once per frame
     private void Update()
     {
-        deltaPos = (movementSource.localPosition - lastPostion)/ Time.deltaTime;
-        print("right" + deltaPos.magnitude);
+        deltaPos = (movementSource.localPosition - lastPostion) / Time.deltaTime;
         if (deltaPos.magnitude < 0.3f) //or (!isPressed && deltaPos.equals(new Vector3(0, 0, 0)))
         {
             isRotating = false;
@@ -36,7 +35,6 @@ public class PaddleRightVR : Paddle
 
         else if (ViveInput.GetPress(HandRole.RightHand, ControllerButton.Grip))
         {
-           
             StartRowing(deltaPos);
         }
 
@@ -47,7 +45,7 @@ public class PaddleRightVR : Paddle
 
     protected void StartRowing(Vector3 posDelta)
     {
-       // print("Right:" + posDelta.magnitude);
+        // print("Right:" + posDelta.magnitude);
         if (posDelta.magnitude > speed)
         {
             if (Mathf.Abs(posDelta.x) > Mathf.Abs(posDelta.y))
@@ -55,7 +53,7 @@ public class PaddleRightVR : Paddle
                 if (posDelta.x < 0)
                 {
                     //print("posDelta.x < 0");
-               
+
                     RotateYRight();
 
                     if (nextState == ProcessState.Back)
@@ -85,14 +83,13 @@ public class PaddleRightVR : Paddle
                     RotateZUp();
                     if (nextState == ProcessState.up)
                     {
-                        nextState = ProcessState.Front;                       
+                        nextState = ProcessState.Front;
                         moveBoatEvent?.Invoke();
                         isRotating = true;
                     }
                 }
             }
         }
-            
     }
 
     private enum ProcessState
