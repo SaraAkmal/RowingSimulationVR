@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using HTC.UnityPlugin.Vive;
 using UnityEngine;
 
 public class BatsManager : MonoBehaviour
@@ -31,6 +32,8 @@ public class BatsManager : MonoBehaviour
             batsParticleSystem.Play();
             bats.GetComponent<AudioSource>().DOFade(1, 2);
             bats.GetComponent<AudioSource>().Play();
+            ViveInput.TriggerHapticVibration(HandRole.LeftHand);
+            ViveInput.TriggerHapticVibration(HandRole.RightHand);
             MoveBats();
         }
     }

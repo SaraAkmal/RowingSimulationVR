@@ -12,7 +12,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/BatsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/IslandManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Boat/BoatManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Boat/VR/PaddleLeftVR.cs" />
@@ -20,6 +19,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SkeletonManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bouncy Scripts/Floater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CanvasControls.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BatsManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xJrCNXlVRzqJs7b5LF6mScupFB" />
@@ -70,6 +70,7 @@
       <workItem from="1630168209415" duration="629000" />
       <workItem from="1630434713045" duration="4386000" />
       <workItem from="1630503408060" duration="1864000" />
+      <workItem from="1630582824818" duration="910000" />
     </task>
     <servers />
   </component>
